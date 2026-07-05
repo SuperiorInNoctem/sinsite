@@ -1,7 +1,7 @@
 local_backend: true
 backend:
   name: github
-  repo: jouw-github-naam/sin-website # 👈 LET OP: Vul hier jouw eigen GitHub naam en reponaam in!
+  repo: superiorinnoctem/sinsite # 👈 LET OP: Vul hier jouw eigen GitHub naam en reponaam in!
   branch: main # Of 'master' als jullie repo zo heet
 
 media_folder: "images" # Hier slaat het CMS nieuwe foto's automatisch op
