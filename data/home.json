@@ -1,0 +1,27 @@
+{
+  "hero_image": "Disputenronde.jpeg",
+  "hero_titel": "S.I.N.",
+  "stats": [
+    { "titel": "(Oud-)leden", "doel": 70, "plus": false },
+    { "titel": "Jaar oud", "doel": 14, "plus": false },
+    { "titel": "Activiteiten per jaar", "doel": 100, "plus": true }
+  ],
+  "lied_couplet": "komen uit het zuiden bij het Tilburgse kanaal, de een ligt op het water en de ander zuipt zich kaal. Vrijgevochten, zelfgekozen wit en donkerblauw, trots en onverschrokken blijven wij de kleuren trouw.",
+  "over_titel": "Dispuut sinds 2012",
+  "over_tekst": "In 2012 besloten een aantal eerstejaars Vidraten om niet in te gaan op de uitnodigingen van de traditionele disputen. Ze voelden er meer voor om samen hun eigen pad uit te stippelen. Enkele jaren verder staat er een dispuut met haar eigen kleuren, tradities en gewoontes met nog steeds dezelfde ambities, drang en gedrevenheid naar eigen karakter.",
+  "collage": [
+    { "afbeelding": "Buitendag.jpeg", "formaat": "img-normaal" },
+    { "afbeelding": "sinvakantie.jpg", "formaat": "img-normaal" },
+    { "afbeelding": "Kas_gesneuveld.jpg", "formaat": "img-hoog" },
+    { "afbeelding": "Zopie_mdm.jpg", "formaat": "img-breed" },
+    { "afbeelding": "Datediner_26.jpg", "formaat": "img-normaal" },
+    { "afbeelding": "skivakantie.jpg", "formaat": "img-normaal" },
+    { "afbeelding": "Paaspop23.jpeg", "formaat": "img-breed" }
+  ],
+  "contact": {
+    "titel": "Keertje meeborrelen?",
+    "email": "sin.vidar@gmail.com",
+    "tel_ab_actis": "+31 6 36 35 71 17",
+    "tel_overig": "+31 6 42 04 88 30"
+  }
+}
