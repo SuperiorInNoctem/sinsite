@@ -1,3 +1,4 @@
+local_backend: true
 backend:
   name: github
   repo: jouw-github-naam/sin-website # 👈 LET OP: Vul hier jouw eigen GitHub naam en reponaam in!
