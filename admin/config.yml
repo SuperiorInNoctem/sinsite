@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: jouw-github-naam/sin-website # 👈 LET OP: Vul hier jouw eigen GitHub naam en reponaam in!
+  branch: main # Of 'master' als jullie repo zo heet
+
+media_folder: "images" # Hier slaat het CMS nieuwe foto's automatisch op
+public_folder: "/images"
+
+# Het ontwerp van de beheeromgeving
+collections:
+  - name: "home"
+    label: "🏠 Homepagina Beheren"
+    files:
+      - label: "📊 Statistieken & Snel-feiten"
+        name: "stats"
+        file: "data/stats.json" # Hier slaat hij de getallen op
+        fields:
+          - {label: "Aantal (Oud-)leden", name: "leden_count", widget: "number", default: 70}
+          - {label: "Jaar oud", name: "jaar_oud", widget: "number", default: 14}
+          - {label: "Activiteiten per jaar", name: "activiteiten", widget: "number", default: 100}
+      
+      - label: "✍️ Over Ons Tekst"
+        name: "over_ons"
+        file: "data/over-ons.json"
+        fields:
+          - {label: "Subtitel Tag", name: "tag", widget: "string", default: "Sinds 2012"}
+          - {label: "Catchphrase", name: "titel", widget: "string", default: "Vrijgevochten & Zelfverkozen"}
+          - {label: "Alinea 1 (Met grote beginletter)", name: "alinea_1", widget: "text"}
+          - {label: "Alinea 2", name: "alinea_2", widget: "text"}
