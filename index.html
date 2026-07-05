@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superior in Noctem</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Wapen_S.I.N..png" alt="Logo Superior in Noctem" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="leden.html">Leden</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li>
+                <a href="https://www.instagram.com/superiorinnoctem/" target="_blank" class="nav-insta-icon" aria-label="Instagram">
+                    <img src="Instagram.png" alt="Instagram">
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="lied-balk">
+        <div id="lied-tekst" class="lied-container scrolling">WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</div>
+    </div>
+
+    <header id="home" class="hero-image">
+        <img src="Disputenronde.jpeg" alt="Singala" class="hero-img">
+        <h1 class="hero-titel">S.I.N.</h1>
+    </header>
+
+    <section class="stats-sectie">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3 class="stat-titel">(Oud-)leden</h3>
+                <div class="stat-nummer" data-doel="70" data-plus="false">0</div>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-titel">Jaar oud</h3>
+                <div class="stat-nummer" data-doel="14" data-plus="false">0</div>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-titel">Activiteiten per jaar</h3>
+                <div class="stat-nummer" data-doel="100" data-plus="true">0</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function startAlleTellers() {
+            const stats = document.querySelectorAll(".stat-nummer");
+
+            if (!stats.length) {
+                console.error("Let op: De HTML met klasse '.stat-nummer' is niet gevonden!");
+                return;
+            }
+
+            stats.forEach((stat) => {
+                const doel = parseInt(stat.getAttribute("data-doel"), 10);
+                const heeftPlus = stat.getAttribute("data-plus") === "true";
+                
+                // Animatie instellingen (ongeveer 1.5 seconde totale laadtijd)
+                const totaleTijd = 2500;
+                const intervalTijd = 30; 
+                const aantalStappen = totaleTijd / intervalTijd;
+                
+                const stap = Math.max(1, Math.ceil(doel / aantalStappen));
+                let huidig = 0;
+                
+                const timer = setInterval(() => {
+                    huidig += stap;
+                    if (huidig >= doel) {
+                        clearInterval(timer);
+                        stat.innerText = heeftPlus ? doel + "+" : doel;
+                    } else {
+                        stat.innerText = huidig;
+                    }
+                }, intervalTijd);
+            });
+        }
+
+        // Start direct als de pagina al klaar is, of wacht anders exact tot hij klaar is!
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", startAlleTellers);
+        } else {
+            startAlleTellers();
+        }
+    </script>
+
+    <script>
+        const tekstContainer = document.getElementById('lied-tekst');
+        const couplet = "komen uit het zuiden bij het Tilburgse kanaal, de een ligt op het water en de ander zuipt zich kaal. Vrijgevochten, zelfgekozen wit en donkerblauw, trots en onverschrokken blijven wij de kleuren trouw.";
+        const woorden = couplet.split(" ");
+
+        const wacht = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function speelLied() {
+            // 1. Wacht tot de wéééé intro-scroll klaar is
+            await wacht(5500); 
+            tekstContainer.classList.remove('scrolling');
+            
+            // 2. Ritmisch woord voor woord afspelen
+            for (let i = 0; i < woorden.length; i++) {
+                let woord = woorden[i];
+                tekstContainer.textContent = woord;
+
+                let toonTijd = Math.max(250, woord.length * 60);
+                if (woord.endsWith(',') || woord.endsWith('.')) {
+                    toonTijd += 500; 
+                }
+                await wacht(toonTijd);
+            }
+
+            // 3. Finale
+            await wacht(500);
+            tekstContainer.textContent = "SUPERIOR IN NOCTEM";
+        }
+
+        speelLied();
+    </script>
+
+    <section id="over" class="content-section">
+        <h2>Dispuut sinds 2012</h2>
+        
+        <div class="collage-grid">
+            <div class="collage-item tekst-blok">
+                <p>“In 2012 besloten een aantal eerstejaars Vidraten om niet in te gaan op de uitnodigingen van de traditionele disputen. Ze voelden er meer voor om samen hun eigen pad uit te stippelen. Enkele jaren verder staat er een dispuut met haar eigen kleuren, tradities en gewoontes met nog steeds dezelfde ambities, drang en gedrevenheid naar eigen karakter.”</p>
+            </div>
+
+            <img src="Buitendag.jpeg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="sinvakantie.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="Kas_gesneuveld.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-hoog">
+            <img src="Zopie_mdm.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-breed">
+            <img src="Datediner_26.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="skivakantie.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="Paaspop23.jpeg" alt="Dispuutsleven S.I.N." class="collage-item img-breed">
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <h2>Keertje meeborrelen?</h2>
+        
+        <div class="contact-details">
+            <p><span class="contact-label">Email:</span> <a href="mailto:sin.vidar@gmail.com" class="contact-link">sin.vidar@gmail.com</a></p>
+            <p><span class="contact-label">Telefoonnummer Ab Actis:</span> <a href="tel:+31636357117" class="contact-link">+31 6 36 35 71 17</a></p>
+            <p><span class="contact-label">Voor overige vragen:</span> <a href="tel:+31642048830" class="contact-link">+31 6 42 04 88 30</a></p>
+        </div>
+        
+        <div class="insta-container">
+            <a href="https://www.instagram.com/superiorinnoctem/" target="_blank" class="insta-link" aria-label="Volg ons op Instagram">
+                <img src="Instagram.png" alt="Instagram">
+            </a>
+        </div>
+
+        <p class="copyright">&copy; 2026 Superior in Noctem.</p>
+    </footer>
+
+</body>
+</html>

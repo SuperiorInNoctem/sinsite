@@ -1,0 +1,895 @@
+/* --- KLEUREN EN INSTELLINGEN --- */
+:root {
+    --primary-color: #060b26; /* Het diepe donkerblauw uit het logo */
+    --secondary-color: #0a113a; /* Een fractie lichter donkerblauw voor vlakken */
+    --accent-color: #ffffff; /* Helder wit als accent */
+    --text-light: #e0e0e0; /* Lichtgrijs voor beter leesbare tekst */
+    --text-white: #ffffff;
+}
+
+/* --- BASIS OPMAAK --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* --- NAVIGATIE --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 0.5rem 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtiel wit lijntje */
+}
+
+/* Zorgt dat het logo mooi in de balk past */
+.logo-img {
+    height: 60px;
+    width: auto;
+    mix-blend-mode: screen; 
+    filter: brightness(200%);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* --- INSTAGRAM ICOON IN NAV --- */
+.nav-insta-icon {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-insta-icon img {
+    height: 18px; /* Zorgt dat het icoon dezelfde hoogte heeft als je tekst */
+    width: 18px; 
+    
+    /* Maakt een zwart icoon automatisch wit zodat het op je blauwe balk past */
+    filter: brightness(0) invert(1); 
+    
+    opacity: 0.7;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-insta-icon:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.insta-link img {
+    height: 22px; /* Pas dit getal aan: 20px is subtiel, 25px is wat opvallender */
+    width: auto;
+    filter: brightness(0) invert(1); /* Maakt het icoon wit */
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+/* --- HERO SECTIE (Bovenste vlak) --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 60px; /* Ruimte voor de navbar */
+    background: linear-gradient(rgba(11, 12, 16, 0.8), rgba(11, 12, 16, 0.8)), url('achtergrond.jpg') center/cover;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* --- HERO SECTIE --- */
+.hero-image {
+    position: relative; /* CRUCIAAL: Dit houdt de zwevende tekst binnen de foto */
+    width: 100%;
+    height: auto;
+    padding-top: 0px; 
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    display: block;
+    image-rendering: high-quality;
+    image-rendering: -webkit-optimize-contrast;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* De styling voor de letters over de foto */
+.hero-titel {
+    position: absolute;
+    top: 80%; /* Verlaagd van 50% naar 35% om hem hoger te zetten */
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    
+    font-family: 'Racing Sans One', sans-serif;
+    font-size: 17rem; 
+    color: var(--accent-color);
+    letter-spacing: 15px; 
+    
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 2px 5px rgba(0, 0, 0, 0.5); 
+    
+    z-index: 10;
+    margin: 0;
+}
+
+.btn {
+    padding: 10px 25px;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   SNEL-FEITEN / STATS BAR (Direct onder Hero)
+   ========================================================================== */
+.stats-sectie {
+    background-color: var(--secondary-color);
+    padding: 3.5rem 8%;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 5;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 gelijke kolommen naast elkaar */
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 1rem;
+    position: relative;
+}
+
+/* Subtiel scheidingslijntje tussen de kolommen op desktop */
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1rem;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-titel {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+    opacity: 0.85;
+}
+
+.stat-nummer {
+    font-family: 'Racing Sans One', sans-serif;
+    font-size: 3.8rem;
+    color: var(--accent-color);
+    line-height: 1;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* --- DE LIED BALK (Direct onder de navigatie) --- */
+.lied-balk {
+    width: 100%;
+    margin-top: 76px; /* Exacte hoogte van de navbar, sluit naadloos aan */
+    height: 55px;
+    background-color: var(--secondary-color); /* Donkerblauwe achtergrond is terug */
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5); 
+    z-index: 10;
+}
+
+.lied-container {
+    font-family: 'Racing Sans One', sans-serif;
+    font-size: 1.35rem; 
+    color: var(--text-white);
+    text-transform: uppercase;
+    white-space: nowrap; 
+    letter-spacing: 4px; 
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtiele schaduw voor op de blauwe balk */
+}
+
+/* --- DE SCROLL ANIMATIE --- */
+.scrolling {
+    display: inline-block;
+    /* 'forwards' zorgt dat hij stopt aan het einde en een seintje geeft aan JavaScript! */
+    animation: scroll-weee 6s linear forwards; 
+}
+
+@keyframes scroll-weee {
+    0% { transform: translateX(100vw); }
+    /* -105% is exact het moment dat de allerlaatste 'E' links uit het scherm is verdwenen */
+    100% { transform: translateX(-105%); } 
+}
+
+/* --- ALGEMENE SECTIES --- */
+.content-section {
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.content-section h2 {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dark-bg {
+    background-color: var(--secondary-color);
+}
+
+/* --- OVER ONS SECTIE (Asymmetrische Mozaïek Collage) --- */
+/* ==========================================================================
+   OVER ONS SECTIE (PC / Desktop Collage - 4 Kolommen)
+   ========================================================================== */
+.collage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 kolommen in de breedte op PC! */
+    grid-auto-rows: 240px; 
+    gap: 1.5rem; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.collage-item {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.tekst-blok {
+    grid-column: span 2; 
+    display: flex;
+    align-items: center; 
+    font-size: 1.15rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    text-align: left;
+    padding-right: 1.5rem; 
+}
+
+.img-normaal { grid-column: span 1; object-fit: cover; }
+.img-breed   { grid-column: span 2; object-fit: cover; }
+.img-hoog    { grid-row: span 2;    object-fit: cover; }
+
+.collage-grid img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* --- INSTAGRAM FEED WIDGET --- */
+.insta-container {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- COMPACTE EN CHIQUE FOOTER --- */
+.footer {
+    padding: 3rem 10% 2rem 10%; /* Boven- en onderkant flink verkleind (was vaak 5rem of 6rem) */
+    background-color: var(--primary-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+/* De titel "Neem Contact Op" */
+.footer h2 {
+    font-family: 'Racing Sans One', sans-serif;
+    color: var(--text-white);
+    font-size: 2rem;
+    margin-bottom: 1.2rem; /* Was veel groter (vaak 2.5rem of 3rem) */
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Container voor de contactgegevens */
+.contact-details {
+    margin-bottom: 1.2rem; /* Ademruimte naar het Instagram icoon verkleind */
+}
+
+/* Zorgt dat e-mail en telefoonnummers strakker onder elkaar staan */
+.contact-details p {
+    margin: 0.4rem 0; /* Van 0.8rem teruggebracht naar 0.4rem voor een strakkere lijst */
+    font-size: 1.1rem; /* Ietsje subtieler om mooi te passen in de slankere footer */
+}
+
+/* De styling voor de tekst "Email:" en "Tel:" */
+.contact-label {
+    color: rgba(255, 255, 255, 0.4); 
+    font-weight: 500;
+    margin-right: 5px; 
+}
+
+/* De universele styling voor de links */
+.contact-link, .contact-link:visited {
+    color: var(--text-white); 
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    display: inline-block; 
+}
+
+.contact-link:hover {
+    color: var(--accent-color); 
+    border-bottom: 1px solid var(--accent-color); 
+    transform: translateY(-2px); 
+}
+
+/* Container voor Instagram */
+.insta-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem; /* Ook hier de extra witruimte flink teruggesnoeid */
+    margin-bottom: 1.5rem; /* Ruimte naar de copyright-regel compacter gemaakt */
+    width: 100%;
+}
+
+.insta-link {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.insta-link img {
+    height: 22px; 
+    width: auto;
+    filter: brightness(0) invert(1); 
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.insta-link:hover {
+    transform: scale(1.1);
+}
+
+.insta-link:hover img {
+    opacity: 1;
+}
+
+/* Copyright regel onderaan */
+.copyright {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0; /* Geen onnodige marges eromheen */
+}
+
+/* --- LEDEN FOTO STYLING --- */
+.lid-foto {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 1rem auto;
+    display: block;
+    border: 2px solid var(--accent-color);
+}
+
+/* --- LEDEN GRID (Alles op één rij) --- */
+.leden-grid {
+    display: flex;
+    justify-content: center; /* Centreert de leden altijd netjes, ook als het er maar 3 zijn */
+    gap: 1.5rem; /* Ruimte tussen de kaartjes, iets kleiner zodat 5 makkelijk passen */
+    max-width: 1200px; /* De container iets breder gemaakt om 5 leden de ruimte te geven */
+    margin: 0 auto;
+}
+
+.lid-kaart {
+    flex: 1; 
+    max-width: 220px; 
+    min-width: 170px; 
+    
+    /* DE VERANDERING: Achtergrond, randen en schaduw zijn weggehaald */
+    background-color: transparent; 
+    padding: 0.5rem; /* Padding kleiner gemaakt omdat het kader weg is */
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+/* Een heel subtiel effectje: de foto en tekst liften iets op als je er met de muis over gaat */
+.lid-kaart:hover {
+    transform: translateY(-5px); 
+}
+
+.lid-kaart h3 {
+    color: var(--text-white);
+    font-size: 1.1rem; /* Ietsje kleiner om lange namen op 1 regel te houden */
+    margin-bottom: 0.2rem;
+}
+
+.lid-kaart p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- OUD-LEDEN VERENIGING --- */
+.alumni-sectie {
+    margin-top: 8rem; 
+    padding: 5rem 8%;
+    background-color: var(--secondary-color); 
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.alumni-titel {
+    font-family: 'Racing Sans One', sans-serif;
+    color: var(--accent-color);
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+}
+
+.alumni-tekst {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* Container voor De Oprichters (los bovenaan) */
+.alumni-oprichters {
+    max-width: 700px; /* Iets breder dan een normale grid-foto voor extra focus */
+    margin: 0 auto 4.5rem auto; /* Flinke ademruimte aan de onderkant */
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Chique scheidingslijn onder de oprichters */
+}
+
+/* Container voor De Oprichters (los bovenaan) */
+.alumni-oprichters {
+    max-width: 850px; /* Nog ietsje breder gemaakt, zodat de oprichters echt de ruimte krijgen */
+    margin: 0 auto 4.5rem auto; 
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); 
+}
+
+/* Zorgt dat de oprichtersfoto in zijn hele lengte én hoogte getoond wordt */
+.oprichters-foto {
+    width: 100%;
+    height: auto !important; /* Pas de hoogte automatisch aan de foto aan */
+    max-height: 500px; /* Zorgt dat hij wel lekker groot wordt, maar niet heel je scherm overneemt */
+    object-fit: contain; /* CRUCIAAL: Zorgt dat 100% van de foto zichtbaar blijft en niets wordt wegesneden */
+}
+
+/* Het grid voor de 9 overige lichtingen */
+.alumni-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 4.5rem 3.5rem; /* Nog een klein beetje extra ademruimte tussen de nu grotere foto's */
+    max-width: 1200px; /* Raster iets verbreed voor grotere foto's */
+    margin: 0 auto;
+}
+
+/* De groepsfoto per lichting - Nu zonder box/rand */
+/* De foto's nu volledig 'vrij' op de pagina */
+.alumni-foto, .oprichters-foto {
+    width: 100%;
+    height: auto; 
+    max-height: 400px; 
+    object-fit: contain; 
+    
+    /* Alles wat de 'box' vormde is nu verwijderd */
+    background-color: transparent !important; 
+    border: none !important; 
+    box-shadow: none !important; 
+    border-radius: 0 !important; 
+    
+    margin-bottom: 1rem;
+    display: block; /* Zorgt dat de foto mooi gecentreerd blijft staan */
+}
+
+/* Voor de oprichtersfoto (die mag iets groter blijven) */
+.oprichters-foto {
+    max-height: 500px;
+}
+
+.alumni-lichting h3 {
+    color: var(--text-white);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+/* De namen van de reünisten onder de foto */
+.alumni-namen {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.6; /* Ietsje lichter dan de aanwezige leden */
+    font-style: italic; /* Schuingedrukt voor duidelijk onderscheid */
+    opacity: 0.8;
+    padding: 0 10px;
+}
+
+/* De 'Sluit je aan' Knop */
+.alumni-btn {
+    padding: 12px 30px;
+    background-color: transparent;
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    border: 2px solid var(--text-white);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.alumni-btn:hover {
+    background-color: var(--text-white);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+/* ==========================================================================
+   MOBIELSCHERMEN & TABLETS VERTICAAL (max-width: 768px) - VOLLEDIGE FIX
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* --- 1. ALGEMENE LAY-OUT & TYPOGRAFIE --- */
+    body {
+        font-size: 15px; 
+    }
+
+    .content-section {
+        padding: 4rem 6%; 
+    }
+
+    h2 {
+        font-size: 1.8rem !important; 
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+    }
+
+
+    /* --- 2. NAVIGATIEBALK --- */
+    .navbar {
+        padding: 0.8rem 5%;
+        height: 65px; 
+        flex-direction: row; 
+        justify-content: space-between;
+    }
+
+    .logo-img {
+        height: 40px; 
+    }
+
+    .nav-links {
+        gap: 1.2rem; 
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+    }
+
+    .nav-insta-icon img {
+        height: 16px;
+        width: 16px;
+    }
+
+
+/* 3. DE HERO FOTO & TITEL OP MOBIEL */
+    .hero-image {
+        position: relative !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        /* We maken het vak qua hoogte compacter, zodat een brede foto veel beter past! */
+        height: auto !important; 
+        max-height: 400px !important; 
+        min-height: 250px !important;
+        width: 100% !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-color: var(--primary-color) !important; /* Voorkomt witte randen */
+    }
+
+    /* Zorgt dat de foto niet meer aan de zijkanten wordt wegesneden, maar over de volle breedte schaalt */
+    .hero-img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 400px !important;
+        object-fit: contain !important; /* CRUCIAAL: Laat de HELE breedte van de foto zien! */
+    }
+
+    .hero-titel {
+        position: absolute !important;
+        top: 80 !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        font-size: 5.5rem !important; /* Teruggebracht van 11rem naar 3.8rem! */
+        letter-spacing: 8px !important; /* Iets minder tussenruimte zodat het past op een smal scherm */
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+/* Lied balk sluit op mobiel aan op de iets slankere mobiele navbar */
+    .lied-balk { 
+        margin-top: 65px !important; /* Mobiele navbar is 65px hoog */
+        height: 45px !important;
+        position: relative !important;
+        bottom: auto !important;
+        background-color: var(--secondary-color) !important;
+    }
+    
+    .lied-container { 
+        font-size: 1.05rem !important; 
+        letter-spacing: 1px !important; 
+        text-shadow: none !important;
+    }
+
+
+    /* --- 3.5 SNEL-FEITEN OP MOBIEL (3 NAAST ELKAAR) --- */
+    .stats-sectie {
+        padding: 2rem 2% !important; /* Wat minder randruimte om het scherm maximaal te benutten */
+    }
+
+    .stats-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important; /* Dwingt 3 gelijke kolommen naast elkaar af! */
+        gap: 0.5rem !important; /* Compacte tussenruimte */
+    }
+
+    .stat-item {
+        padding: 0.5rem !important;
+        border-bottom: none !important; /* Haalt eventuele horizontale lijntjes van eerder weg */
+    }
+
+    /* Subtiel verticaal scheidingslijntje tussen de 3 feiten op mobiel */
+    .stat-item:not(:last-child)::after {
+        content: '' !important;
+        display: block !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 20% !important;
+        height: 60% !important;
+        width: 1px !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* De titels (zoals 'Activiteiten per jaar') maken we subtiel genoeg zodat ze netjes passen */
+    .stat-titel {
+        font-size: 0.72rem !important; 
+        letter-spacing: 0.5px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.4rem !important;
+        min-height: 28px !important; /* Zorgt dat alle titels op exact dezelfde hoogte uitlijnen */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* De grote getallen (70, 14, 100+) */
+    .stat-nummer {
+        font-size: 2rem !important; /* Compactere en chiquere cijfers voor op de telefoon */
+    }
+
+
+    /* --- 4. ACTIEVE LEDENPAGINA (LICHTINGEN) --- */
+    /* FIX: Zorgt dat de actieve leden netjes gecentreerd onder elkaar worden gestapeld */
+    .leden-grid {
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: center !important; 
+        gap: 1.5rem !important; 
+        width: 100%;
+    }
+
+    .lid-kaart {
+        width: 100% !important;
+        max-width: 280px !important; /* Ideale breedte voor een verticaal scherm */
+    }
+
+
+
+
+/* --- 5. OVER ONS: SPEELS BENTO GRID ON MOBIEL (Portrait) --- */
+.collage-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* Op mobiel 2 kolommen */
+        grid-auto-rows: auto !important;
+        grid-auto-flow: dense !important; /* De puzzel-fix voor lege gaten */
+        gap: 1rem !important;
+    }
+
+    .tekst-blok {
+        grid-column: span 2 !important;
+        padding-right: 0 !important;
+        margin-bottom: 0.5rem !important;
+        font-size: 1.05rem !important;
+        line-height: 1.7 !important;
+    }
+
+    .img-normaal {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        height: 160px !important;
+        object-fit: cover !important;
+    }
+
+    .img-breed {
+        grid-column: span 2 !important;
+        grid-row: span 1 !important;
+        height: 200px !important;
+        object-fit: cover !important;
+    }
+
+    .img-hoog {
+        grid-column: span 1 !important;
+        grid-row: span 2 !important;
+        height: 335px !important;
+        object-fit: cover !important;
+    }
+
+
+    /* --- 6. OUD-LEDEN VERENIGING & OPRICHTERS --- */
+    .alumni-sectie {
+        margin-top: 5rem;
+        padding: 3.5rem 5%;
+    }
+
+    .alumni-titel {
+        font-size: 1.7rem;
+    }
+
+    .alumni-tekst {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .alumni-oprichters {
+        margin-bottom: 3rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .oprichters-foto {
+        max-height: 260px !important; 
+    }
+
+    .alumni-grid {
+        grid-template-columns: 1fr; 
+        gap: 3rem;
+    }
+
+    .alumni-foto {
+        height: auto; 
+        max-height: 280px; 
+        margin-bottom: 0.8rem;
+    }
+
+    .alumni-lichting h3 {
+        font-size: 1.15rem;
+    }
+
+    .alumni-namen, 
+    .alumni-missend {
+        font-size: 0.88rem;
+        padding: 0 5px;
+    }
+
+
+    /* --- 7. COMPACTE FOOTER --- */
+    .footer {
+        padding: 2.5rem 5% 1.5rem 5%;
+    }
+
+    .footer h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .contact-details {
+        margin-bottom: 1rem;
+    }
+
+    .contact-details p {
+        font-size: 0.95rem;
+        margin: 0.35rem 0;
+    }
+
+    .insta-container {
+        margin-top: 0.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .insta-link img {
+        height: 20px;
+    }
+
+    .copyright {
+        font-size: 0.75rem;
+    }
+}
+
+/* ==========================================================================
+   KLEINE TELEFOONS & IPHONE SE (max-width: 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.6rem 3%;
+    }
+    .logo-img {
+        height: 35px;
+    }
+    .nav-links {
+        gap: 0.8rem;
+    }
+    .nav-links a {
+        font-size: 0.85rem;
+    }
+    .lied-container {
+        font-size: 1rem; 
+    }
+}
