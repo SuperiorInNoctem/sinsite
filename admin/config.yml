@@ -53,19 +53,40 @@ collections:
         name: "leden_content"
         file: "_data/leden.json"
         fields:
-          - { label: "Titel boven de pagina", name: "titel", widget: "string", default: "Onze Leden" }
-          - label: "Lichtingen"
+          - { label: "Titel Actieve Leden", name: "titel", widget: "string", default: "Onze Leden" }
+          
+          - label: "🟢 Actieve Lichtingen (Met losse ronde foto's & studie)"
             name: "lichtingen"
             widget: "list"
             fields:
-              - { label: "Naam van de Lichting (bijv. Lichting 2023)", name: "lichting_naam", widget: "string" }
+              - { label: "Naam van de Lichting (bijv. Lichting X)", name: "lichting_naam", widget: "string" }
               - label: "Leden in deze lichting"
                 name: "leden"
                 widget: "list"
                 fields:
                   - { label: "Naam van het lid", name: "naam", widget: "string" }
                   - { label: "Studie", name: "studie", widget: "string" }
-                  - { label: "Profielfoto", name: "foto", widget: "image" }
+                  - { label: "Profielfoto Uploaden", name: "foto", widget: "image" }
+
+          - { label: "Titel Oud-Leden Sectie", name: "alumni_titel", widget: "string", default: "Oud-Leden Vereniging" }
+
+          - label: "🟡 Oud-Leden Oprichters (Bovenaan groot)"
+            name: "oprichters"
+            widget: "object"
+            fields:
+              - { label: "Titel (bijv. De Oprichters (2012))", name: "titel", widget: "string" }
+              - { label: "Groepsfoto Uploaden", name: "foto", widget: "image" }
+              - { label: "Namen op de foto (v.l.n.r.)", name: "namen", widget: "string" }
+              - { label: "Missend op de foto", name: "missend", widget: "string", required: false }
+
+          - label: "🟡 Oud-Leden Lichtingen (Met groepsfoto & namen)"
+            name: "alumni_lichtingen"
+            widget: "list"
+            fields:
+              - { label: "Naam Lichting (bijv. Lichting I)", name: "lichting_naam", widget: "string" }
+              - { label: "Groepsfoto Uploaden", name: "foto", widget: "image" }
+              - { label: "Namen op de foto (v.l.n.r.)", name: "namen", widget: "string" }
+              - { label: "Missend op de foto (optioneel)", name: "missend", widget: "string", required: false }
 
   - name: "pages"
     label: "📑 Vrije Pagina's Toevoegen"
