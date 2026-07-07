@@ -22,7 +22,7 @@
             <li><a href="leden.html">Leden</a></li>
             <li><a href="index.html#contact">Contact</a></li>
             <li>
-                <a href="https://www.instagram.com/heerendispuutsin/" target="_blank" class="nav-insta-icon" aria-label="Instagram">
+                <a href="https://www.instagram.com/superiorinnoctem/" target="_blank" class="nav-insta-icon" aria-label="Instagram">
                     <img src="Instagram.png" alt="Instagram">
                 </a>
             </li>
@@ -38,8 +38,9 @@
         <h1 class="hero-titel">S.I.N.</h1>
     </header>
 
-    <section class="stats-sectie">
-        <div class="stats-grid">
+<section class="stats-sectie">
+        <div id="stats-grid-el" class="stats-grid">
+            <!-- Tellers worden nu dynamisch ingeladen via het CMS -->
             <div class="stat-item">
                 <h3 class="stat-titel">(Oud-)leden</h3>
                 <div class="stat-nummer" data-doel="70" data-plus="false">0</div>
@@ -55,24 +56,88 @@
         </div>
     </section>
 
+    <section id="over" class="content-section">
+        <h2 id="over-titel-el">Dispuut sinds 2012</h2>
+        
+        <div id="collage-grid-el" class="collage-grid">
+            <div class="collage-item tekst-blok">
+                <p id="over-tekst-el">“In 2012 besloten een aantal eerstejaars Vidraten om niet in te gaan op de uitnodigingen van de traditionele disputen. Ze voelden er meer voor om samen hun eigen pad uit te stippelen. Enkele jaren verder staat er een dispuut met haar eigen kleuren, tradities en gewoontes met nog steeds dezelfde ambities, drang en gedrevenheid naar eigen karakter.”</p>
+            </div>
+
+            <img src="Buitendag.jpeg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="sinvakantie.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="Kas_gesneuveld.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-hoog">
+            <img src="Zopie_mdm.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-breed">
+            <img src="Datediner_26.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="skivakantie.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
+            <img src="Paaspop23.jpeg" alt="Dispuutsleven S.I.N." class="collage-item img-breed">
+        </div>
+    </section>
+
     <script>
+        let liedCoupletTekst = "komen uit het zuiden bij het Tilburgse kanaal, de een ligt op het water en de ander zuipt zich kaal. Vrijgevochten, zelfgekozen wit en donkerblauw, trots en onverschrokken blijven wij de kleuren trouw.";
+
+        // Haal de aanpassingen uit het CMS (data/home.json) op
+        async function laadCMSData() {
+            try {
+                const response = await fetch('data/home.json');
+                if (!response.ok) return;
+                const data = await response.json();
+
+                // 1. Tellers updaten
+                if (data.stats && data.stats.length) {
+                    const statsGrid = document.getElementById('stats-grid-el');
+                    statsGrid.innerHTML = '';
+                    data.stats.forEach(stat => {
+                        statsGrid.innerHTML += `
+                            <div class="stat-item">
+                                <h3 class="stat-titel">${stat.titel}</h3>
+                                <div class="stat-nummer" data-doel="${stat.doel}" data-plus="${stat.plus}">0</div>
+                            </div>`;
+                    });
+                }
+
+                // 2. Over Ons tekst & titel updaten
+                if (data.over_titel) document.getElementById('over-titel-el').innerText = data.over_titel;
+                
+                if (data.over_tekst || data.collage) {
+                    const collageGrid = document.getElementById('collage-grid-el');
+                    const tekst = data.over_tekst || document.getElementById('over-tekst-el').innerText;
+                    
+                    collageGrid.innerHTML = `
+                        <div class="collage-item tekst-blok">
+                            <p>“${tekst}”</p>
+                        </div>`;
+                    
+                    if (data.collage) {
+                        data.collage.forEach(item => {
+                            collageGrid.innerHTML += `<img src="${item.afbeelding}" alt="Dispuutsleven S.I.N." class="collage-item ${item.formaat}">`;
+                        });
+                    }
+                }
+
+                // 3. Lied tekst updaten
+                if (data.lied_couplet) liedCoupletTekst = data.lied_couplet;
+
+            } catch (e) {
+                console.log("CMS data nog niet gevonden, standaard HTML laadt in.", e);
+            } finally {
+                startAlleTellers();
+                speelLied();
+            }
+        }
+
+        // De originele teller animatie
         function startAlleTellers() {
             const stats = document.querySelectorAll(".stat-nummer");
-
-            if (!stats.length) {
-                console.error("Let op: De HTML met klasse '.stat-nummer' is niet gevonden!");
-                return;
-            }
+            if (!stats.length) return;
 
             stats.forEach((stat) => {
                 const doel = parseInt(stat.getAttribute("data-doel"), 10);
                 const heeftPlus = stat.getAttribute("data-plus") === "true";
-                
-                // Animatie instellingen (ongeveer 1.5 seconde totale laadtijd)
                 const totaleTijd = 2500;
                 const intervalTijd = 30; 
                 const aantalStappen = totaleTijd / intervalTijd;
-                
                 const stap = Math.max(1, Math.ceil(doel / aantalStappen));
                 let huidig = 0;
                 
@@ -88,63 +153,33 @@
             });
         }
 
-        // Start direct als de pagina al klaar is, of wacht anders exact tot hij klaar is!
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", startAlleTellers);
-        } else {
-            startAlleTellers();
-        }
-    </script>
-
-    <script>
+        // De originele lied animatie
         const tekstContainer = document.getElementById('lied-tekst');
-        const couplet = "komen uit het zuiden bij het Tilburgse kanaal, de een ligt op het water en de ander zuipt zich kaal. Vrijgevochten, zelfgekozen wit en donkerblauw, trots en onverschrokken blijven wij de kleuren trouw.";
-        const woorden = couplet.split(" ");
-
         const wacht = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
         async function speelLied() {
-            // 1. Wacht tot de wéééé intro-scroll klaar is
+            const woorden = liedCoupletTekst.split(" ");
             await wacht(5500); 
             tekstContainer.classList.remove('scrolling');
             
-            // 2. Ritmisch woord voor woord afspelen
             for (let i = 0; i < woorden.length; i++) {
                 let woord = woorden[i];
                 tekstContainer.textContent = woord;
-
                 let toonTijd = Math.max(250, woord.length * 60);
-                if (woord.endsWith(',') || woord.endsWith('.')) {
-                    toonTijd += 500; 
-                }
+                if (woord.endsWith(',') || woord.endsWith('.')) toonTijd += 500; 
                 await wacht(toonTijd);
             }
-
-            // 3. Finale
             await wacht(500);
             tekstContainer.textContent = "SUPERIOR IN NOCTEM";
         }
 
-        speelLied();
+        // Start alles op
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", laadCMSData);
+        } else {
+            laadCMSData();
+        }
     </script>
-
-    <section id="over" class="content-section">
-        <h2>Dispuut sinds 2012</h2>
-        
-        <div class="collage-grid">
-            <div class="collage-item tekst-blok">
-                <p>“In 2012 besloten een aantal eerstejaars Vidraten om niet in te gaan op de uitnodigingen van de traditionele disputen. Ze voelden er meer voor om samen hun eigen pad uit te stippelen. Enkele jaren verder staat er een dispuut met haar eigen kleuren, tradities en gewoontes met nog steeds dezelfde ambities, drang en gedrevenheid naar eigen karakter.”</p>
-            </div>
-
-            <img src="Buitendag.jpeg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
-            <img src="sinvakantie.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
-            <img src="Kas_gesneuveld.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-hoog">
-            <img src="Zopie_mdm.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-breed">
-            <img src="Datediner_26.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
-            <img src="skivakantie.jpg" alt="Dispuutsleven S.I.N." class="collage-item img-normaal">
-            <img src="Paaspop23.jpeg" alt="Dispuutsleven S.I.N." class="collage-item img-breed">
-        </div>
-    </section>
 
     <footer id="contact" class="footer">
         <h2>Keertje meeborrelen?</h2>
@@ -156,7 +191,7 @@
         </div>
         
         <div class="insta-container">
-            <a href="https://www.instagram.com/heerendispuutsin/" target="_blank" class="insta-link" aria-label="Volg ons op Instagram">
+            <a href="https://www.instagram.com/superiorinnoctem/" target="_blank" class="insta-link" aria-label="Volg ons op Instagram">
                 <img src="Instagram.png" alt="Instagram">
             </a>
         </div>
