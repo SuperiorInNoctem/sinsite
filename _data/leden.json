@@ -1,0 +1,20 @@
+{
+  "titel": "Onze Leden",
+  "lichtingen": [
+    {
+      "lichting_naam": "Lichting 2024",
+      "leden": [
+        {
+          "naam": "Naam Lid 1",
+          "studie": "Bedrijfskunde",
+          "foto": "/assets/leden/voorbeeld1.jpg"
+        },
+        {
+          "naam": "Naam Lid 2",
+          "studie": "Rechten",
+          "foto": "/assets/leden/voorbeeld2.jpg"
+        }
+      ]
+    }
+  ]
+}
