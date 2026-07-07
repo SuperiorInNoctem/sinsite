@@ -1,8 +1,8 @@
 local_backend: true
 backend:
   name: github
-  repo: superiorinnoctem/sinsite # 👈 LET OP: Vul hier jouw eigen GitHub naam en reponaam in!
-  branch: main # Of 'master' als jullie repo zo heet
+  repo: superiorinnoctem/sinsite
+  branch: main 
 
 media_folder: "assets"
 public_folder: "/assets"
