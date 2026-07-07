@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Superior in Noctem</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/style.css">
+    
+    <!-- RECHTSTREEKSE DYNAMISCHE KLEUREN INJECTIE UIT HET CMS -->
+    <style>
+        :root {
+            --bg-color: {{ design.achtergrond_kleur }};
+            --accent-color: {{ design.accent_kleur }};
+            --text-color: {{ design.tekst_kleur }};
+            --title-font: '{{ design.titel_font }}', sans-serif;
+            --body-font: '{{ design.body_font }}', sans-serif;
+        }
+        
+        /* Pas de huisstijl direct toe op de bestaande CSS klassen */
+        body {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+            font-family: var(--body-font) !important;
+        }
+        .navbar, .footer, .lied-balk {
+            background-color: var(--accent-color) !important;
+        }
+        h1, h2, h3, .hero-titel {
+            font-family: var(--title-font) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/assets/Wapen_S.I.N..png" alt="Logo S.I.N." class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/leden.html">Leden</a></li>
+            <li><a href="/index.html#contact">Contact</a></li>
+            <li>
+                <a href="https://www.instagram.com/superiorinnoctem/" target="_blank" class="nav-insta-icon">
+                    <img src="/assets/Instagram.png" alt="Instagram">
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="lied-balk">
+        <div id="lied-tekst" class="lied-container scrolling">WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</div>
+    </div>
+
+    <!-- HIER WORDT DE SPECIFIEKE PAGINA-INHOUD IN GEGOTEN -->
+    {{ content }}
+
+    <footer id="contact" class="footer">
+        <h2>Keertje meeborrelen?</h2>
+        <div class="contact-details">
+            <p><span class="contact-label">Email:</span> <a href="mailto:sin.vidar@gmail.com" class="contact-link">sin.vidar@gmail.com</a></p>
+            <p><span class="contact-label">Ab Actis:</span> <a href="tel:+31636357117" class="contact-link">+31 6 36 35 71 17</a></p>
+        </div>
+        <p class="copyright">&copy; 2026 Superior in Noctem.</p>
+    </footer>
+
+    <!-- JULLIE ORIGINELE LIED-ANIMATIE -->
+    <script>
+        const tekstContainer = document.getElementById('lied-tekst');
+        const couplet = "komen uit het zuiden bij het Tilburgse kanaal, de een ligt op het water en de ander zuipt zich kaal. Vrijgevochten, zelfgekozen wit en donkerblauw, trots en onverschrokken blijven wij de kleuren trouw.";
+        const woorden = couplet.split(" ");
+        const wacht = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function speelLied() {
+            await wacht(5500); 
+            tekstContainer.classList.remove('scrolling');
+            for (let i = 0; i < woorden.length; i++) {
+                let woord = woorden[i];
+                tekstContainer.textContent = woord;
+                let toonTijd = Math.max(250, woord.length * 60);
+                if (woord.endsWith(',') || woord.endsWith('.')) toonTijd += 500;
+                await wacht(toonTijd);
+            }
+            await wacht(500);
+            tekstContainer.textContent = "SUPERIOR IN NOCTEM";
+        }
+        speelLied();
+    </script>
+</body>
+</html>
