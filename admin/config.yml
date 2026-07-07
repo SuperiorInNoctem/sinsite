@@ -4,46 +4,69 @@ backend:
   repo: superiorinnoctem/sinsite # 👈 LET OP: Vul hier jouw eigen GitHub naam en reponaam in!
   branch: main # Of 'master' als jullie repo zo heet
 
-media_folder: "" # Laat leeg zodat foto's in de hoofdmap komen, net als nu!
-public_folder: ""
+media_folder: "assets"
+public_folder: "/assets"
 
 collections:
-  - name: "home"
-    label: "🏠 Homepagina & Inhoud"
+  - name: "design"
+    label: "🎨 Huisstijl & Vormgeving"
     files:
-      - label: "⚙️ Homepagina Bewerken"
-        name: "home_edit"
-        file: "data/home.json"
+      - label: "Kleuren & Lettertypen"
+        name: "huisstijl"
+        file: "_data/design.json"
         fields:
-          - { label: "Bovenste Hero Foto", name: "hero_image", widget: "image" }
-          - { label: "Titel over de foto", name: "hero_titel", widget: "string", default: "S.I.N." }
-          
-          - label: "📊 Tellers & Statistieken"
-            name: "stats"
-            widget: "list"
-            fields:
-              - { label: "Titel", name: "titel", widget: "string" }
-              - { label: "Nummer (Doel)", name: "doel", widget: "number" }
-              - { label: "Plusje (+) erachter?", name: "plus", widget: "boolean", default: false }
+          - { label: "Achtergrondkleur Website", name: "achtergrond_kleur", widget: "color" }
+          - { label: "Accentkleur (Balken & Footer)", name: "accent_kleur", widget: "color" }
+          - { label: "Algemene Tekstkleur", name: "tekst_kleur", widget: "color" }
+          - { label: "Kopjes Lettertype", name: "titel_font", widget: "select", options: ["Racing Sans One", "Georgia", "Impact", "Arial"] }
+          - { label: "Leestekst Lettertype", name: "body_font", widget: "select", options: ["Arial", "Helvetica", "Times New Roman", "Courier New"] }
 
-          - { label: "🎵 Lied (Lichtkrant Tekst)", name: "lied_couplet", widget: "text" }
-          
-          - { label: "Titel 'Over Ons'", name: "over_titel", widget: "string" }
-          - { label: "Tekst 'Over Ons'", name: "over_tekst", widget: "text" }
-          
-          - label: "🖼️ Fotocollage (Blokken-Doos)"
-            name: "collage"
-            widget: "list"
-            label_singular: "Foto"
+  - name: "home"
+    label: "🏠 Homepagina Beheren"
+    files:
+      - label: "Inhoud Homepagina"
+        name: "home_content"
+        file: "_data/home.json"
+        fields:
+          - { label: "Hero Achtergrond Foto", name: "hero_image", widget: "image" }
+          - { label: "Grote Hero Titel", name: "hero_titel", widget: "string" }
+          - { label: "Tellers & Statistieken", name: "stats", widget: "list", fields: [
+              { label: "Titel", name: "titel", widget: "string" },
+              { label: "Aantal (Doelgetal)", name: "doel", widget: "number" },
+              { label: "Plusje (+) tonen?", name: "plus", widget: "boolean" }
+            ]}
+          - { label: "Tekstblok 'Over Ons'", name: "over_tekst", widget: "text" }
+          - { label: "Fotocollage", name: "collage", widget: "list", fields: [
+              { label: "Afbeelding Uploaden", name: "afbeelding", widget: "image" },
+              { label: "Formaat in Raster", name: "formaat", widget: "select", options: ["img-normaal", "img-hoog", "img-breed"] }
+            ]}
+
+  - name: "pages"
+    label: "📑 Vrije Pagina's Toevoegen"
+    folder: "content/pages"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Pagina Titel (Bijv: Lustrum)", name: "title", widget: "string" }
+      - { label: "Web-link (Bijv: /lustrum)", name: "permalink", widget: "string", hint: "Begin altijd met een schuine streep, bijv: /lustrum/" }
+      - { label: "Layout Model", name: "layout", widget: "hidden", default: "base.html" }
+      
+      - label: "🛠️ Visuele Blokken-Doos (Pagina Opbouwen)", name: "blocks", widget: "list", types:
+          - name: "text_block"
+            label: "📄 Tekstveld Toevoegen"
             fields:
-              - { label: "Foto Uploaden", name: "afbeelding", widget: "image" }
-              - { label: "Formaat in de collage", name: "formaat", widget: "select", options: ["img-normaal", "img-hoog", "img-breed"], default: "img-normaal" }
+              - { label: "Koptekst boven blok", name: "heading", widget: "string" }
+              - { label: "Inhoud (Rijke tekst met links & dikgedrukt)", name: "content", widget: "markdown" }
           
-          - label: "📞 Contactgegevens Footer"
-            name: "contact"
-            widget: "object"
+          - name: "image_block"
+            label: "🖼️ Grote Foto Toevoegen"
             fields:
-              - { label: "Titel", name: "titel", widget: "string" }
-              - { label: "E-mailadres", name: "email", widget: "string" }
-              - { label: "Telefoonnummer Ab Actis", name: "tel_ab_actis", widget: "string" }
-              - { label: "Telefoonnummer Overige Vragen", name: "tel_overig", widget: "string" }
+              - { label: "Foto Selecteren / Uploaden", name: "image", widget: "image" }
+              - { label: "Bijschrift onder foto", name: "caption", widget: "string" }
+          
+          - name: "cta_button"
+            label: "🔘 Actieknop (Link naar formulier)"
+            fields:
+              - { label: "Tekst op de knop", name: "button_text", widget: "string" }
+              - { label: "Waar moet de knop naartoe?", name: "button_link", widget: "string" }
