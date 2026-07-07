@@ -1,14 +1,14 @@
 ---
 layout: base.html
 title: Onze Leden
+templateEngineOverride: njk
 ---
 
 <section class="content-section" style="padding-top: 140px;">
     <h2 style="font-family: 'Racing Sans One', sans-serif; letter-spacing: 3px;">{{ leden.titel }}</h2>
     
-    <!-- ACTIEVE LICHTINGEN -->
     {% for lichting in leden.lichtingen %}
-        <div class="lichting-container" style="margin-top: {% if loop.first %}4rem{% else %}5rem{% endif %};">
+        <div class="lichting-container" style="margin-top: 4.5rem;">
             <h3 style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 2rem; letter-spacing: 2px; font-family: 'Racing Sans One', sans-serif;">
                 {{ lichting.lichting_naam }}
             </h3>
@@ -16,7 +16,6 @@ title: Onze Leden
             <div class="leden-grid">
                 {% for lid in lichting.leden %}
                     <div class="lid-kaart">
-                        <!-- De ronde foto garantie -->
                         <img src="{{ lid.foto }}" alt="{{ lid.naam }}" class="lid-foto"
                              style="width: 150px; height: 150px; border-radius: 50%; aspect-ratio: 1/1; object-fit: cover; box-shadow: 0 6px 15px rgba(0,0,0,0.15); border: 3px solid var(--accent-color); margin-bottom: 15px;">
                         
@@ -29,11 +28,9 @@ title: Onze Leden
     {% endfor %}
 </section>
 
-<!-- OUD-LEDEN VERENIGING -->
 <div class="alumni-sectie">
     <h2 class="alumni-titel">{{ leden.alumni_titel }}</h2>
 
-    <!-- DE OPRICHTERS -->
     {% if leden.oprichters %}
         <div class="alumni-oprichters">
             <div class="alumni-lichting">
@@ -47,7 +44,6 @@ title: Onze Leden
         </div>
     {% endif %}
 
-    <!-- OUD-LEDEN LICHTINGEN -->
     <div class="alumni-grid">
         {% for alm in leden.alumni_lichtingen %}
             <div class="alumni-lichting">
