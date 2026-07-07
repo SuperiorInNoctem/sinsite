@@ -30,16 +30,20 @@ collections:
         fields:
           - { label: "Hero Achtergrond Foto", name: "hero_image", widget: "image" }
           - { label: "Grote Hero Titel", name: "hero_titel", widget: "string" }
-          - { label: "Tellers & Statistieken", name: "stats", widget: "list", fields: [
-              { label: "Titel", name: "titel", widget: "string" },
-              { label: "Aantal (Doelgetal)", name: "doel", widget: "number" },
-              { label: "Plusje (+) tonen?", name: "plus", widget: "boolean" }
-            ]}
+          - label: "Tellers & Statistieken"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Titel", name: "titel", widget: "string" }
+              - { label: "Aantal (Doelgetal)", name: "doel", widget: "number" }
+              - { label: "Plusje (+) tonen?", name: "plus", widget: "boolean" }
           - { label: "Tekstblok 'Over Ons'", name: "over_tekst", widget: "text" }
-          - { label: "Fotocollage", name: "collage", widget: "list", fields: [
-              { label: "Afbeelding Uploaden", name: "afbeelding", widget: "image" },
-              { label: "Formaat in Raster", name: "formaat", widget: "select", options: ["img-normaal", "img-hoog", "img-breed"] }
-            ]}
+          - label: "Fotocollage"
+            name: "collage"
+            widget: "list"
+            fields:
+              - { label: "Afbeelding Uploaden", name: "afbeelding", widget: "image" }
+              - { label: "Formaat in Raster", name: "formaat", widget: "select", options: ["img-normaal", "img-hoog", "img-breed"] }
 
   - name: "pages"
     label: "📑 Vrije Pagina's Toevoegen"
@@ -51,20 +55,20 @@ collections:
       - { label: "Pagina Titel (Bijv: Lustrum)", name: "title", widget: "string" }
       - { label: "Web-link (Bijv: /lustrum)", name: "permalink", widget: "string", hint: "Begin altijd met een schuine streep, bijv: /lustrum/" }
       - { label: "Layout Model", name: "layout", widget: "hidden", default: "base.html" }
-      
-      - label: "🛠️ Visuele Blokken-Doos (Pagina Opbouwen)", name: "blocks", widget: "list", types:
+      - label: "🛠️ Visuele Blokken-Doos (Pagina Opbouwen)"
+        name: "blocks"
+        widget: "list"
+        types:
           - name: "text_block"
             label: "📄 Tekstveld Toevoegen"
             fields:
               - { label: "Koptekst boven blok", name: "heading", widget: "string" }
               - { label: "Inhoud (Rijke tekst met links & dikgedrukt)", name: "content", widget: "markdown" }
-          
           - name: "image_block"
             label: "🖼️ Grote Foto Toevoegen"
             fields:
               - { label: "Foto Selecteren / Uploaden", name: "image", widget: "image" }
               - { label: "Bijschrift onder foto", name: "caption", widget: "string" }
-          
           - name: "cta_button"
             label: "🔘 Actieknop (Link naar formulier)"
             fields:
