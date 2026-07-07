@@ -44,6 +44,28 @@ collections:
             fields:
               - { label: "Afbeelding Uploaden", name: "afbeelding", widget: "image" }
               - { label: "Formaat in Raster", name: "formaat", widget: "select", options: ["img-normaal", "img-hoog", "img-breed"] }
+- name: "leden"
+    label: "👥 (Oud-)Leden & Lichtingen"
+    media_folder: "/assets/leden"
+    public_folder: "/assets/leden"
+    files:
+      - label: "Beheer Ledenpagina"
+        name: "leden_content"
+        file: "_data/leden.json"
+        fields:
+          - { label: "Titel boven de pagina", name: "titel", widget: "string", default: "Onze Leden" }
+          - label: "Lichtingen"
+            name: "lichtingen"
+            widget: "list"
+            fields:
+              - { label: "Naam van de Lichting (bijv. Lichting 2023)", name: "lichting_naam", widget: "string" }
+              - label: "Leden in deze lichting"
+                name: "leden"
+                widget: "list"
+                fields:
+                  - { label: "Naam van het lid", name: "naam", widget: "string" }
+                  - { label: "Studie", name: "studie", widget: "string" }
+                  - { label: "Profielfoto", name: "foto", widget: "image" }
 
   - name: "pages"
     label: "📑 Vrije Pagina's Toevoegen"
