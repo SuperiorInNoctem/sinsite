@@ -2,19 +2,60 @@
   "titel": "Onze Leden",
   "lichtingen": [
     {
-      "lichting_naam": "Lichting 2024",
+      "lichting_naam": "Lichting X",
       "leden": [
-        {
-          "naam": "Naam Lid 1",
-          "studie": "Bedrijfskunde",
-          "foto": "/assets/leden/voorbeeld1.jpg"
-        },
-        {
-          "naam": "Naam Lid 2",
-          "studie": "Rechten",
-          "foto": "/assets/leden/voorbeeld2.jpg"
-        }
+        { "naam": "Tycho Fonville", "studie": "BSc Organisatiewetenschappen", "foto": "/assets/leden/Tycho.jpg" },
+        { "naam": "Bart Paassen", "studie": "BSc Entrepreneurship & Business Innovation", "foto": "/assets/leden/Bert.jpg" },
+        { "naam": "Jasper Offermanns", "studie": "BSc International Business Administration", "foto": "/assets/leden/Jasper.jpg" },
+        { "naam": "Frode de Roo", "studie": "BSc Bestuurskunde", "foto": "/assets/leden/Frode.jpg" },
+        { "naam": "Joost Claessens", "studie": "BSc International Business Administration", "foto": "/assets/leden/Joost.jpg" }
+      ]
+    },
+    {
+      "lichting_naam": "Lichting XI",
+      "leden": [
+        { "naam": "Levi Meulendijks", "studie": "BSc Rechtsgeleerdheid", "foto": "/assets/leden/Koek.jpg" },
+        { "naam": "Daan Commandeur", "studie": "BSc Fiscaal Recht", "foto": "/assets/leden/Zopie.jpg" },
+        { "naam": "Jens Raben", "studie": "BSc Econometrie", "foto": "/assets/leden/Jens.jpg" },
+        { "naam": "Hugo Glaser", "studie": "BSc Economie & Bedrijfseconomie", "foto": "/assets/leden/Hugo.jpg" }
+      ]
+    },
+    {
+      "lichting_naam": "Lichting XII",
+      "leden": [
+        { "naam": "Dennis Dubbeld", "studie": "MSc Finance", "foto": "/assets/leden/Dennis.jpg" },
+        { "naam": "Reyno Meeusen", "studie": "HBO Technische Bedrijfskunde", "foto": "/assets/leden/Barrie.jpg" },
+        { "naam": "Lars Jans", "studie": "BSc Economie & Bedrijfseconomie", "foto": "/assets/leden/Hans.jpg" },
+        { "naam": "Finn van Hommel", "studie": "BSc Psychologie", "foto": "/assets/leden/Finn.jpg" },
+        { "naam": "Wink Sluizeman", "studie": "HBO ICT", "foto": "/assets/leden/Wink.jpg" }
+      ]
+    },
+    {
+      "lichting_naam": "Lichting XIII",
+      "leden": [
+        { "naam": "Tijn Haerkens", "studie": "Bier drinken", "foto": "/assets/leden/Tijn.jpg" },
+        { "naam": "Teun Stolwerk", "studie": "HBO Technische Bedrijfskunde", "foto": "/assets/leden/Teun.jpg" },
+        { "naam": "Mas Kock", "studie": "Toegepaste psychologie", "foto": "/assets/leden/Mas.jpg" },
+        { "naam": "Eppo Horvers", "studie": "PABO", "foto": "/assets/leden/Eppo.jpg" }
       ]
     }
+  ],
+  "alumni_titel": "Oud-Leden Vereniging",
+  "oprichters": {
+    "titel": "De Oprichters (2012)",
+    "foto": "/assets/leden/Oprichters.jpg",
+    "namen": "Auke Schoeman, Stan van der Heul, Sander Stapelkamp, Koen Crolla, Mike van Dienst, Casper Janse, Wouter Jansen",
+    "missend": "Jos Nabuurs, Job de Fijter, Martin van Rossum"
+  },
+  "alumni_lichtingen": [
+    { "lichting_naam": "Lichting I", "foto": "/assets/leden/Lichting_I.jpg", "namen": "Daan Vonk, Frans van de Wijdeven, Djay Emmers, Mike Monteny" },
+    { "lichting_naam": "Lichting II", "foto": "/assets/leden/Lichting_II.jpg", "namen": "Dennis Caljouw, Lukas Brus", "missend": "Luuk Haarmans, Matthijs Stapelkamp" },
+    { "lichting_naam": "Lichting III", "foto": "/assets/leden/Lichting_III.jpg", "namen": "Michel van Ham, Tijmen Frie, Rob Lammers, Nick Grosfeld, Danny Spruit" },
+    { "lichting_naam": "Lichting IV", "foto": "/assets/leden/Lichting_IV.jpg", "namen": "Luuk Beele, Stein Seetsen, Sem Mozes, Tobias Toonen, Steyn Oversteegen, Leroy van Loopik" },
+    { "lichting_naam": "Lichting V", "foto": "/assets/leden/Lichting_V.jpg", "namen": "Bram Holla" },
+    { "lichting_naam": "Lichting VI", "foto": "/assets/leden/Lichting_VI.jpg", "namen": "Ryan Toisuta, Sander Storm, Tommy Lavrijsen, Dirk Cremers, Sebastiaan Asselbergs, Ricardo van Belzen, Thijs van Schijndel" },
+    { "lichting_naam": "Lichting VII", "foto": "/assets/leden/Lichting_VII.jpg", "namen": "Cian Broens, Ranx Peeters, Tjeu van Meer, Jurgen van den Eijden, Matthijs Brangers, Matthijs de Dreu, Steven Verbeek" },
+    { "lichting_naam": "Lichting VIII", "foto": "/assets/leden/Lichting_VIII.jpg", "namen": "Jan van der Drift, Joris de Greef, Jaymon Veldkamp, Thijn Vastenholt, Matthijs Kroesen" },
+    { "lichting_naam": "Lichting IX", "foto": "/assets/leden/Lichting_IX.jpg", "namen": "Mathijs Vereggen, Kas Klerx, Robert van der Horst, Oliver Smits" }
   ]
 }
