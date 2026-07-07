@@ -1,0 +1,40 @@
+name: Deploy Eleventy Site to Pages
+on:
+push:
+branches: ["main"]
+workflow_dispatch:
+permissions:
+contents: read
+pages: write
+id-token: write
+concurrency:
+group: "pages"
+cancel-in-progress: false
+jobs:
+build:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@v4
+- name: Setup Node.js
+uses: actions/setup-node@v4
+with:
+node-version: 18
+- name: Install Eleventy
+run: npm install @11ty/eleventy@2.0.1
+- name: Build Static Site
+run: npx @11ty/eleventy
+- name: Upload Artifacts
+uses: actions/upload-pages-artifact@v3
+with:
+path: "_site"
+deploy:
+environment:
+name: github-pages
+url: ${{ steps:call.outputs.page_url }}
+needs: build
+runs-on: ubuntu-latest
+steps:
+- name: Deploy to GitHub Pages
+id: call
+uses: actions/deploy-pages@v4
