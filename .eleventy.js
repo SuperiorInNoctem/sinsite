@@ -1,7 +1,8 @@
 module.exports = function(eleventyConfig) {
-    // Kopieer alleen de assets en admin mappen naar de live website
+    // Deze regels zorgen dat jullie CSS, foto's en CMS mee worden verhuisd naar internet!
     eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("admin");
+    eleventyConfig.addPassthroughCopy("_data");
 
     return {
         dir: {
